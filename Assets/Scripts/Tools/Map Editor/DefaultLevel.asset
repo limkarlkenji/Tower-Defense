@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63789cd396e56f548864a9460187f392, type: 3}
+  m_Name: DefaultLevel
+  m_EditorClassIdentifier: 
+  mapSize: 10
+  tileStructure: {fileID: 1068906831490028337, guid: 6de937d85c9c93a49b9690b85f3acff1, type: 3}
+  tileEnemyPath: {fileID: 9116556863835221872, guid: 93e0af2f999157a4ea7e9be7104f1986, type: 3}
+  tileSpawn: {fileID: 6810475105939083319, guid: 4be5c86027b111948a3df22d07397006, type: 3}
+  tileEnd: {fileID: 578458671361640913, guid: e2f8b14924ff17c439b28952da853b14, type: 3}
+  tileOffset: 1
+  pathOrder:
+  - {x: 3, y: 1}
+  - {x: 2, y: 1}
+  - {x: 1, y: 1}
+  - {x: 1, y: 2}
+  - {x: 1, y: 3}
+  - {x: 1, y: 4}
+  - {x: 1, y: 5}
+  - {x: 1, y: 6}
+  - {x: 1, y: 7}
+  - {x: 1, y: 8}
+  - {x: 2, y: 8}
+  - {x: 3, y: 8}
+  - {x: 3, y: 7}
+  - {x: 3, y: 6}
+  - {x: 3, y: 5}
+  - {x: 4, y: 5}
+  - {x: 4, y: 4}
+  - {x: 4, y: 3}
+  - {x: 5, y: 3}
+  - {x: 5, y: 2}
+  - {x: 5, y: 1}
+  - {x: 6, y: 1}
+  - {x: 7, y: 1}
+  - {x: 8, y: 1}
+  - {x: 8, y: 2}
+  - {x: 8, y: 3}
+  - {x: 8, y: 4}
+  - {x: 8, y: 5}
+  - {x: 7, y: 5}
+  - {x: 6, y: 5}
+  - {x: 6, y: 6}
+  - {x: 6, y: 7}
+  - {x: 6, y: 8}
+  - {x: 7, y: 8}
+  - {x: 8, y: 8}
