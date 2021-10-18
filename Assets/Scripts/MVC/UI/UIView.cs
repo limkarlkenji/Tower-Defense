@@ -6,19 +6,21 @@ using TMPro;
 public class UIView : BaseView<UIModel, UIController>
 {
     [Header("Menu")]
-    [SerializeField] private GameObject waveStart;
-    [SerializeField] private TMP_Text waveCountdown;
-    [SerializeField] private GameObject gameOver;
+    [SerializeField] private GameObject _waveStart;
+    [SerializeField] private TMP_Text _waveCountdown;
+    [SerializeField] private GameObject _gameOver;
+    [SerializeField] private Text _gameOverFinalScore;
     [Header("Information")]
-    [SerializeField] private HUDInfoUI hudInfo;
+    [SerializeField] private HUDInfoUI _hudInfo;
     [SerializeField] private Text _lblLives;
     [SerializeField] private Text _lblWave;
     [SerializeField] private Text _lblGold;
+    [SerializeField] private Text _lblScore;
     [Header("Actions")]
     [Header("Tower Actions")]
-    [SerializeField] private TowerActionUI towerActionUI;
+    [SerializeField] private TowerActionUI _towerActionUI;
     [Header("Tower Builder")]
-    [SerializeField] private GameObject towerBuilderUI;
+    [SerializeField] private GameObject _towerBuilderUI;
 
     [Header("Data(Don't edit)")]
     [SerializeField] private GameObject currentActionUI;
@@ -32,19 +34,20 @@ public class UIView : BaseView<UIModel, UIController>
     {
         if(countDown == 0)
         {
-            waveStart.SetActive(false);
+            _waveStart.SetActive(false);
             return;
         }
         else
         {
-            waveCountdown.text = countDown.ToString();
+            _waveCountdown.text = countDown.ToString();
         }
-        waveStart.SetActive(true);
+        _waveStart.SetActive(true);
     }
 
-    public void DisplayGameOver()
+    public void DisplayGameOver(float finalScore)
     {
-        gameOver.SetActive(true);
+        _gameOver.SetActive(true);
+        _gameOverFinalScore.text = finalScore.ToString();
     }
 
     // =====================================================================================================
@@ -52,8 +55,13 @@ public class UIView : BaseView<UIModel, UIController>
     // =====================================================================================================
     public void Unselect()
     {
-        hudInfo.SetHUDInfo();
+        _hudInfo.SetHUDInfo();
         SetActionUI(null);
+    }
+
+    public void SetScore(float score)
+    {
+        _lblScore.text = "Score: " + score;
     }
 
     public void SetGold(float gold)
@@ -77,7 +85,7 @@ public class UIView : BaseView<UIModel, UIController>
     /// <param name="tower"></param>
     public void DisplayTowerInfo(Tower tower)
     {
-        hudInfo.SetHUDInfo(tower.Portrait, tower.TowerName);
+        _hudInfo.SetHUDInfo(tower.Portrait, tower.TowerName);
         DisplayTowerAction(tower);
     }
     // =====================================================================================================
@@ -107,10 +115,10 @@ public class UIView : BaseView<UIModel, UIController>
     /// <param name="onClick"></param>
     public void DisplayTowerList(TowerSetData towers, UnityAction<TowerData> onClick)
     {
-        hudInfo.SetHUDInfo();
+        _hudInfo.SetHUDInfo();
         // TODO pool this
-        Controller.DisplayShop(towers, towerBuilderUI.transform, onClick);
-        SetActionUI(towerBuilderUI);
+        Controller.DisplayShop(towers, _towerBuilderUI.transform, onClick);
+        SetActionUI(_towerBuilderUI);
     }
 
     /// <summary>
@@ -119,11 +127,11 @@ public class UIView : BaseView<UIModel, UIController>
     /// <param name="tower"></param>
     public void DisplayTowerAction(Tower tower)
     {
-        towerActionUI.SetButton(()=> { 
+        _towerActionUI.SetButton(()=> { 
             tower.Sell();
             Unselect();
         });
-        SetActionUI(towerActionUI.gameObject);
+        SetActionUI(_towerActionUI.gameObject);
     }
 
 }

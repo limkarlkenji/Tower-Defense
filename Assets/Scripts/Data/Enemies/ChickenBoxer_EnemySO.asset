@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 1687355418850323273, guid: be4a93142c912c049afaca02535e642b, type: 3}
   health: 100
-  speed: 1
+  speed: 5
   damage: 1
   goldReward: 100
+  scoreReward: 200

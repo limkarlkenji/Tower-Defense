@@ -17,7 +17,7 @@ public class PlayerBase : MonoBehaviour
         if(enemy != null)
         {
             BaseHit(enemy.damage);
-            enemy.TakeDamage(10000000);
+            enemy.TakeDamage(10000000, 0, 0, "Base");
         }
     }
 }

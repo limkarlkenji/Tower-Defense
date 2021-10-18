@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b10232e9cbdb1642b34520a16b697e2, type: 3}
-  m_Name: DogKnight_EnemySO
+  m_Script: {fileID: 11500000, guid: 6e8aacd5450e7704d863b30634906767, type: 3}
+  m_Name: CameraModelSO
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1687355418850323273, guid: f7a51b3b2762c654d92b013dc16ab510, type: 3}
-  health: 120
-  speed: 5
-  damage: 2
-  goldReward: 500
-  scoreReward: 100
+  panSpeed: 5

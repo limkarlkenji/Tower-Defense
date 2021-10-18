@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,7 +27,7 @@ public class Tower : MonoBehaviour
 
     private ObjectPool _pool;
 
-    public void SetAttributes(TowerData tData, TowerTile tTile, ObjectPool pool)
+    public void SetProperties(TowerData tData, TowerTile tTile, ObjectPool pool)
     {
         _pool = pool;
 

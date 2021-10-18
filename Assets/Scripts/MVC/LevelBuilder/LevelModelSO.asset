@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23f67b3f4dbe55e40b354bf78edbddcb, type: 3}
-  m_Name: LevelViewSO
+  m_Name: LevelModelSO
   m_EditorClassIdentifier: 
   levelTemplate: {fileID: 11400000, guid: 1d0f670959f0f4445a2379d6ac7f532f, type: 2}
   waveSet: {fileID: 11400000, guid: 56163f60e3e3d7f44826d68140629d12, type: 2}

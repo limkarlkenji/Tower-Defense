@@ -11,18 +11,22 @@ public class Enemy : MonoBehaviour, IDamageable
     public float speed;
     public int damage;
     public float goldReward;
+    public float scoreReward;
 
-    public event Action OnKill;
+    public event Action<string, float, float> OnKill;
 
-    public void TakeDamage(float damageReceived)
+    public void TakeDamage(float damageReceived, float goldReward, float scoreReward, string source)
     {
-        health -= damageReceived;
-        if(health <= 0)
+        if(health > 0)
         {
-            _animator.Play("Die");
-            OnKill?.Invoke();
-            speed = 0;
-            StartCoroutine(cDestroy());
+            health -= damageReceived;
+            if (health <= 0)
+            {
+                _animator.Play("Die");
+                OnKill?.Invoke(source, goldReward, scoreReward);
+                speed = 0;
+                StartCoroutine(cDestroy());
+            }
         }
     }
 
@@ -32,6 +36,7 @@ public class Enemy : MonoBehaviour, IDamageable
         speed = d.speed;
         damage = d.damage;
         goldReward = d.goldReward;
+        scoreReward = d.scoreReward;
     }
 
     public void Move(List<Transform> path)

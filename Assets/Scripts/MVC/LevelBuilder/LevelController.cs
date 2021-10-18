@@ -5,7 +5,7 @@ using System;
 
 public class LevelController : BaseController<LevelModel>
 {
-    public IEnumerator cSpawnWave(int count, int wave, Map currentMap, Action onSpawnComplete, Action<float> OnEnemyKill)
+    public IEnumerator cSpawnWave(int count, int wave, Map currentMap, Action onSpawnComplete, Action<string, float, float> OnEnemyKill)
     {
         EnemyData enemyData = Model.waveSet.waves[wave].enemy;
 
@@ -20,7 +20,7 @@ public class LevelController : BaseController<LevelModel>
 
             e.SetProperties(enemyData);
             e.Move(currentMap.path);
-            e.OnKill += () => { OnEnemyKill?.Invoke(e.goldReward); };
+            e.OnKill += OnEnemyKill;
 
             yield return new WaitForSeconds(Model.spawnRate);
         }

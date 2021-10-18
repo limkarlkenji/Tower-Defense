@@ -13,7 +13,7 @@ public class BuilderController : BaseController<BuilderModel>
         OnBuildComplete?.Invoke();
 
         Tower t = g.GetComponent<Tower>();
-        t.SetAttributes(tower, towerBase, pool);
+        t.SetProperties(tower, towerBase, pool);
         return t;
 
     }

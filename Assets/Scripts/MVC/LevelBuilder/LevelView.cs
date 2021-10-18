@@ -17,7 +17,11 @@ public class LevelView : BaseView<LevelModel, LevelController>
         if(nextWave == Model.waveSet.waves.Count) { GameEnd(); return; }
 
         currentMap.GetPath();
-        StartCoroutine(Controller.cSpawnWave(Model.waveSet.waves[nextWave].enemyCount, nextWave, currentMap, PollEnemyCount, player.AddCoins));
+        StartCoroutine(Controller.cSpawnWave(Model.waveSet.waves[nextWave].enemyCount, nextWave, currentMap, PollEnemyCount, 
+            (source, gold, score) => {
+                player.AddCoins(gold);
+                player.AddScore(score);
+            }));
         nextWave += 1;
     }
 
@@ -41,6 +45,7 @@ public class LevelView : BaseView<LevelModel, LevelController>
     public void GameEnd()
     {
         StopAllCoroutines();
+        ui.DisplayGameOver(player.currentScore);
         Debug.Log("End");
     }
 }

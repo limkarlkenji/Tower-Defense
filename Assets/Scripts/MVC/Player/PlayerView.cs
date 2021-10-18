@@ -9,6 +9,7 @@ public class PlayerView : BaseView<PlayerModel, PlayerController>
     public PlayerBase playerBase;
     public int currentLives;
     public float currentGold;
+    public float currentScore;
     public UnityEvent OnZeroLives;
 
     [Header("References")]
@@ -19,8 +20,9 @@ public class PlayerView : BaseView<PlayerModel, PlayerController>
         currentGold = Model.startingGold;
         currentLives = Model.startingLives;
 
-        ui.SetGold(currentGold);
         ui.SetLife(currentLives);
+        ui.SetGold(currentGold);
+        ui.SetScore(currentScore);
     }
 
     public void RegisterEvents(UIView ui)
@@ -55,5 +57,11 @@ public class PlayerView : BaseView<PlayerModel, PlayerController>
         {
             OnZeroLives?.Invoke();
         }
+    }
+
+    public void AddScore(float amount)
+    {
+        currentScore += amount;
+        ui.SetScore(currentScore);
     }
 }
