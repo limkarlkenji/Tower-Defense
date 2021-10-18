@@ -17,7 +17,7 @@ public class LevelView : BaseView<LevelModel, LevelController>
         if(nextWave == Model.waveSet.waves.Count) { GameEnd(); return; }
 
         currentMap.GetPath();
-        StartCoroutine(Controller.cSpawnWave(Model.waveSet.waves[nextWave].enemyCount, 0, currentMap, PollEnemyCount, player.AddCoins));
+        StartCoroutine(Controller.cSpawnWave(Model.waveSet.waves[nextWave].enemyCount, nextWave, currentMap, PollEnemyCount, player.AddCoins));
         nextWave += 1;
     }
 
@@ -28,11 +28,12 @@ public class LevelView : BaseView<LevelModel, LevelController>
 
     public void  WaitForNextWave()
     {
-        StartCoroutine(Controller.cWaitForNextWave(Model.waveSet.intervalBetweenWaves, WaitComplete));
+        StartCoroutine(Controller.cWaitForNextWave(Model.waveSet.intervalBetweenWaves, ui.DisplayWaveCountdown, WaitComplete));
     }
 
     public void WaitComplete()
     {
+        ui.DisplayWaveCountdown(0);
         ui.SetWave(nextWave);
         SpawnWave();
     }

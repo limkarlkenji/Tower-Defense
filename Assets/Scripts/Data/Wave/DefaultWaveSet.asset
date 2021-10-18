@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea2c884c77229a43b51dc083ddfaa95, type: 3}
   m_Name: DefaultWaveSet
   m_EditorClassIdentifier: 
-  intervalBetweenWaves: 5
+  intervalBetweenWaves: 1
   waves:
   - {fileID: 11400000, guid: f1bc6de048fa7e04fa8c0e69934079fa, type: 2}
   - {fileID: 11400000, guid: bdf5cb26aff15974baa884f020d36fae, type: 2}

@@ -36,9 +36,16 @@ public class LevelController : BaseController<LevelModel>
         onWaveComplete?.Invoke();
     }
 
-    public IEnumerator cWaitForNextWave(float interval, Action onWaitComplete)
+    public IEnumerator cWaitForNextWave(float interval, Action<float> onCountdown, Action onWaitComplete)
     {
-        yield return new WaitForSeconds(interval);
+        float timer = interval;
+        while(timer > 0)
+        {
+            onCountdown?.Invoke(timer);
+            timer -= 1;
+            yield return new WaitForSeconds(1);
+        }
+        //yield return new WaitForSeconds(interval);
         onWaitComplete?.Invoke();
     }
 }

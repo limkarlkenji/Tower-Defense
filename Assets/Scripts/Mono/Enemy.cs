@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
+    [SerializeField] private Animator _animator;
+
     public float health;
     public float speed;
     public int damage;
@@ -17,8 +19,10 @@ public class Enemy : MonoBehaviour, IDamageable
         health -= damageReceived;
         if(health <= 0)
         {
+            _animator.Play("Die");
             OnKill?.Invoke();
-            Destroy(gameObject);
+            speed = 0;
+            StartCoroutine(cDestroy());
         }
     }
 
@@ -50,5 +54,12 @@ public class Enemy : MonoBehaviour, IDamageable
             i++;
             yield return null;
         }
+    }
+
+    private IEnumerator cDestroy()
+    {
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+        Destroy(gameObject);
+
     }
 }

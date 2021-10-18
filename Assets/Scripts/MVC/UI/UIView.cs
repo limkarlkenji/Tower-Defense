@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using TMPro;
 
 public class UIView : BaseView<UIModel, UIController>
 {
     [Header("Menu")]
+    [SerializeField] private GameObject waveStart;
+    [SerializeField] private TMP_Text waveCountdown;
     [SerializeField] private GameObject gameOver;
     [Header("Information")]
     [SerializeField] private HUDInfoUI hudInfo;
@@ -25,6 +28,20 @@ public class UIView : BaseView<UIModel, UIController>
     // =====================================================================================================
     // Menu
     // =====================================================================================================
+    public void DisplayWaveCountdown(float countDown = 0)
+    {
+        if(countDown == 0)
+        {
+            waveStart.SetActive(false);
+            return;
+        }
+        else
+        {
+            waveCountdown.text = countDown.ToString();
+        }
+        waveStart.SetActive(true);
+    }
+
     public void DisplayGameOver()
     {
         gameOver.SetActive(true);

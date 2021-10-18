@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Wave2
   m_EditorClassIdentifier: 
   enemy: {fileID: 11400000, guid: fecad0459e339cf498b40935296bbeec, type: 2}
-  enemyCount: 30
+  enemyCount: 10

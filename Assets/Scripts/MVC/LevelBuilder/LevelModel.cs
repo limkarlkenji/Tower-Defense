@@ -7,7 +7,6 @@ public class LevelModel : BaseModel
 {
     public MapBuilder levelTemplate;
     public WaveSetData waveSet;
-    public EnemyData enemyData;
     public float spawnRate;
 
 }
