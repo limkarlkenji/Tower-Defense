@@ -27,14 +27,38 @@ public class Projectile : MonoBehaviour
 
     private IEnumerator cFire()
     {
-        while (Target != null)
+        if(Target == null) {
+            _onHit?.Invoke(null);
+            yield break; }
+        //while (Target != null)
+        //{
+        //    if (Target != null)
+        //    {
+        //        transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, _speed * Time.deltaTime);
+        //    }
+        //    yield return null;
+        //}
+
+        Vector3 start = transform.position;
+        Vector3 mid = start + (Target.transform.position - start) / 2;
+        mid.y += 2f;
+        Vector3 end = Target.transform.position;
+
+        float t = 0;
+        while (t < 1)
         {
-            if (Target != null)
+            if(Target != null)
             {
-                transform.position = Vector3.MoveTowards(transform.position, Target.transform.position, _speed * Time.deltaTime);
+                end = Target.transform.position;    // Update target position
             }
+
+            float oneMinusT = 1f - t;
+            transform.position = oneMinusT * ((oneMinusT * start) +  (t* mid)) +  (t *((oneMinusT * mid) + (t * end))); // Quadratic bezier
+            t += Time.deltaTime;
             yield return null;
+
         }
+
         _onHit?.Invoke(null);
     }
 

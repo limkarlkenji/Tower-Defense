@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: CameraModelSO
   m_EditorClassIdentifier: 
   panSpeed: 5
+  horizontalEdgeScroll: {x: -1, y: 1}
+  verticalEdgeScroll: {x: -1, y: 1}
