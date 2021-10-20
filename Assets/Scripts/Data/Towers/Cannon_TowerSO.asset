@@ -17,5 +17,5 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 308824c1403f2a6479d9e92c0c6e91fc, type: 3}
   fireRate: 1.5
   cost: 200
-  sellPrice: 0
+  sellPrice: 100
   projectile: {fileID: 11400000, guid: ae0f70805f601bc4485b4c4354413c98, type: 2}

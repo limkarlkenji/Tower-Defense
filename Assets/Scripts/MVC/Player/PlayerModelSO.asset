@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: PlayerModelSO
   m_EditorClassIdentifier: 
   startingLives: 20
-  startingGold: 10000
+  startingGold: 500

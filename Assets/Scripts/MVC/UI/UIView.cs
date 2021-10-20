@@ -9,6 +9,7 @@ public class UIView : BaseView<UIModel, UIController>
     [SerializeField] private GameObject _waveStart;
     [SerializeField] private TMP_Text _waveCountdown;
     [SerializeField] private GameObject _gameOver;
+    [SerializeField] private Text _gameOverMessage;
     [SerializeField] private Text _gameOverFinalScore;
     [Header("Information")]
     [SerializeField] private HUDInfoUI _hudInfo;
@@ -44,9 +45,10 @@ public class UIView : BaseView<UIModel, UIController>
         _waveStart.SetActive(true);
     }
 
-    public void DisplayGameOver(float finalScore)
+    public void DisplayGameOver(float finalScore, string message = "")
     {
         _gameOver.SetActive(true);
+        _gameOverMessage.text = message;
         _gameOverFinalScore.text = finalScore.ToString();
     }
 

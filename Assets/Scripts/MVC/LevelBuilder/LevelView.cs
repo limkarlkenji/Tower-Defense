@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class LevelView : BaseView<LevelModel, LevelController>
 {
@@ -14,8 +11,6 @@ public class LevelView : BaseView<LevelModel, LevelController>
 
     public void SpawnWave()
     {
-        if(nextWave == Model.waveSet.waves.Count) { GameEnd(); return; }
-
         currentMap.GetPath();
         StartCoroutine(Controller.cSpawnWave(Model.waveSet.waves[nextWave].enemyCount, nextWave, currentMap, PollEnemyCount, 
             (source, gold, score) => {
@@ -32,6 +27,7 @@ public class LevelView : BaseView<LevelModel, LevelController>
 
     public void  WaitForNextWave()
     {
+        if (nextWave == Model.waveSet.waves.Count) { GameEnd(); return; }
         StartCoroutine(Controller.cWaitForNextWave(Model.waveSet.intervalBetweenWaves, ui.DisplayWaveCountdown, WaitComplete));
     }
 
@@ -45,7 +41,7 @@ public class LevelView : BaseView<LevelModel, LevelController>
     public void GameEnd()
     {
         StopAllCoroutines();
-        ui.DisplayGameOver(player.currentScore);
+        ui.DisplayGameOver(player.currentScore, (player.currentLives > 0) ? "You have completed all waves!" : "Game Over");
         Debug.Log("End");
     }
 }

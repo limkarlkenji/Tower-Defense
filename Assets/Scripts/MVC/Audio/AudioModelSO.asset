@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a59b0aea18ed79e40981a7fed597267a, type: 3}
+  m_Name: AudioModelSO
+  m_EditorClassIdentifier: 
+  mainMenuBGM: {fileID: 0}
+  gameBGM: {fileID: 0}
+  playerLoseLife: {fileID: 0}
+  goldSpend: {fileID: 0}
+  towerBuild: {fileID: 8300000, guid: f0465beebcf927048946e4dde8dd64f0, type: 3}
+  towerFire: {fileID: 8300000, guid: e53d6980b828e3b409b733a840dfce26, type: 3}
+  towerSell: {fileID: 0}
+  enemyKill: {fileID: 8300000, guid: 32b84add175a1b241be9d7a90441142f, type: 3}
+  buttonClick: {fileID: 0}

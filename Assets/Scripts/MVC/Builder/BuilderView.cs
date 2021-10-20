@@ -5,6 +5,7 @@ public class BuilderView : BaseView<BuilderModel, BuilderController>
 {
     [Header("References")]
     [SerializeField] private UIView ui;
+    [SerializeField] private AudioView sound;
     [SerializeField] private PlayerView player;
 
     [SerializeField] private Transform towerParent;
@@ -26,11 +27,15 @@ public class BuilderView : BaseView<BuilderModel, BuilderController>
     {
         if(player.HasEnoughCoins(tower.cost))
         {
-            Controller.Build(tower, towerBase, towerParent, pool, () => { player.SpendCoins(tower.cost); });
+            Controller.Build(tower, towerBase, towerParent, pool, 
+                (newTower) => { 
+                    player.SpendCoins(tower.cost);
+                    sound.TowerBuild(newTower.AudioSource);
+                });
         }
         else
         {
-            Debug.Log("Not enugh");
+            Debug.Log("Not enough");
         }
     }
 }

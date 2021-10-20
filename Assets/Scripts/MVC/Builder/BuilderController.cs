@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class BuilderController : BaseController<BuilderModel>
 {
-    public Tower Build(TowerData tower, TowerTile towerBase, Transform towerParent, ObjectPool pool, Action OnBuildComplete)
+    public Tower Build(TowerData tower, TowerTile towerBase, Transform towerParent, ObjectPool pool, Action<Tower> OnBuildComplete)
     {
         GameObject g = GameObject.Instantiate(tower.prefab, towerParent);
         g.transform.position = new Vector3(towerBase.transform.position.x, 1, towerBase.transform.position.z);
 
-        OnBuildComplete?.Invoke();
-
         Tower t = g.GetComponent<Tower>();
         t.SetProperties(tower, towerBase, pool);
+
+        OnBuildComplete?.Invoke(t);
         return t;
 
     }
