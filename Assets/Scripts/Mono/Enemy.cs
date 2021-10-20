@@ -7,24 +7,35 @@ public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] private Animator _animator;
 
-    public float health;
-    public float speed;
-    public int damage;
-    public float goldReward;
-    public float scoreReward;
+    [SerializeField] private string _enemyName;
+    [SerializeField] private Sprite _portrait;
+    [SerializeField] private float _health;
+    [SerializeField] private float _speed;
+    [SerializeField] private int _damage;
+    [SerializeField] private float _goldReward;
+    [SerializeField] private float _scoreReward;
+
+
+    public string EnemyName { get { return _enemyName; } private set { _enemyName = value; } }
+    public Sprite Portrait { get { return _portrait; } private set { _portrait = value; } }
+    public float Health { get { return _health; } private set { _health = value; } }
+    public float Speed { get { return _speed; } private set { _speed = value; } }
+    public int Damage { get { return _damage; } private set { _damage = value; } }
+    public float GoldReward { get { return _goldReward; } private set { _goldReward = value; } }
+    public float ScoreReward { get { return _scoreReward; } private set { _scoreReward = value; } }
 
     public event Action<string, float, float> OnKill;
 
     public void TakeDamage(float damageReceived, float goldReward, float scoreReward, string source)
     {
-        if(health > 0)
+        if(_health > 0)
         {
-            health -= damageReceived;
-            if (health <= 0)
+            _health -= damageReceived;
+            if (_health <= 0)
             {
                 _animator.Play("Die");
                 OnKill?.Invoke(source, goldReward, scoreReward);
-                speed = 0;
+                _speed = 0;
                 StartCoroutine(cDestroy());
             }
         }
@@ -32,11 +43,13 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public void SetProperties(EnemyData d)
     {
-        health = d.health;
-        speed = d.speed;
-        damage = d.damage;
-        goldReward = d.goldReward;
-        scoreReward = d.scoreReward;
+        EnemyName = d.enemyName;
+        Portrait = d.portrait;
+        _health = d.health;
+        _speed = d.speed;
+        Damage = d.damage;
+        GoldReward = d.goldReward;
+        ScoreReward = d.scoreReward;
     }
 
     public void Move(List<Transform> path)
@@ -51,7 +64,7 @@ public class Enemy : MonoBehaviour, IDamageable
         {
             while(transform.position != path[i].position)
             {
-                transform.position = Vector3.MoveTowards(transform.position, path[i].position, speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, path[i].position, _speed * Time.deltaTime);
                 transform.LookAt(path[i].position);
                
                 yield return null;

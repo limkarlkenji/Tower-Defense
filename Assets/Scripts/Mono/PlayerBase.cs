@@ -16,7 +16,7 @@ public class PlayerBase : MonoBehaviour
         Enemy enemy = collision.collider.GetComponent<Enemy>();
         if(enemy != null)
         {
-            BaseHit(enemy.damage);
+            BaseHit(enemy.Damage);
             enemy.TakeDamage(10000000, 0, 0, "Base");
         }
     }

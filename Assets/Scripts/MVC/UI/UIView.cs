@@ -85,9 +85,16 @@ public class UIView : BaseView<UIModel, UIController>
     /// <param name="tower"></param>
     public void DisplayTowerInfo(Tower tower)
     {
-        _hudInfo.SetHUDInfo(tower.Portrait, tower.TowerName);
+        _hudInfo.SetHUDInfo(tower.Portrait, tower.TowerName, tower);
         DisplayTowerAction(tower);
     }
+
+    public void DisplayEnemyInfo(Enemy enemy)
+    {
+        _hudInfo.SetHUDInfo(enemy.Portrait, enemy.EnemyName, enemy);
+        SetActionUI(null);
+    }
+
     // =====================================================================================================
     // Selected Actions
     // =====================================================================================================
@@ -98,7 +105,7 @@ public class UIView : BaseView<UIModel, UIController>
     /// <param name="current">Set current to null to hide all</param>
     private void SetActionUI(GameObject current)
     {
-        if(current == null) { currentActionUI.SetActive(false); return; }
+        if(current == null) { if (currentActionUI != null) { currentActionUI.SetActive(false); } return; }
 
         previousActionUI = (currentActionUI != null) ? currentActionUI : null;
         if (previousActionUI != null) { previousActionUI.SetActive(false); }

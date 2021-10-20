@@ -67,7 +67,7 @@ public class Projectile : MonoBehaviour
         Enemy e = collider.GetComponent<Enemy>();
         if(e != null)
         {
-            e.TakeDamage(_damage, e.goldReward, e.scoreReward, "Tower");
+            e.TakeDamage(_damage, e.GoldReward, e.ScoreReward, "Tower");
             _onHit?.Invoke(e);
         }
     }

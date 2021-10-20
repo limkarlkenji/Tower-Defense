@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b10232e9cbdb1642b34520a16b697e2, type: 3}
   m_Name: ChickenBoxer_EnemySO
   m_EditorClassIdentifier: 
+  enemyName: Chicken Boxer
+  portrait: {fileID: 21300000, guid: 4d7f43fc73bd21c43a035709b10e9397, type: 3}
   prefab: {fileID: 1687355418850323273, guid: be4a93142c912c049afaca02535e642b, type: 3}
   health: 100
   speed: 5

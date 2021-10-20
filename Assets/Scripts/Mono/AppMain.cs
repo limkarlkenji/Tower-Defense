@@ -55,9 +55,18 @@ public class AppMain : MonoBehaviour
                             case ("TowerTile"):
                                 builder.TowerTileClicked(clicked, clicked.GetComponent<TowerTile>(), objectPool);
                                 break;
+                            case ("Enemy"):
+                                ui.DisplayEnemyInfo(clicked.GetComponent<Enemy>());
+                                break;
+                            default:
+                                ui.Unselect();
+                                break;
                         }
                     }
-
+                }
+                else
+                {
+                    ui.Unselect();
                 }
             }
 
