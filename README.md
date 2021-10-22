@@ -6,6 +6,7 @@ Unity 2021.1 URP
 
 - MVC using a generic class. Monobehaviours as views, ScriptableObjects as model
 - New input system
+- Map editor using custom editor
 
 ![](td.gif)
 
