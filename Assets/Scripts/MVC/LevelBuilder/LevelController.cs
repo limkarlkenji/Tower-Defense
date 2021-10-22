@@ -5,7 +5,7 @@ using System;
 
 public class LevelController : BaseController<LevelModel>
 {
-    public IEnumerator cSpawnWave(int count, int wave, Map currentMap, Action onSpawnComplete, Action<string, float, float> OnEnemyKill)
+    public IEnumerator cSpawnWave(int count, int wave, Map currentMap, Action onSpawnComplete, Action<string, float, float> OnEnemyKill, Transform uiTarget)
     {
         EnemyData enemyData = Model.waveSet.waves[wave].enemy;
 
@@ -18,7 +18,7 @@ public class LevelController : BaseController<LevelModel>
 
             Enemy e = enemy.GetComponent<Enemy>();
 
-            e.SetProperties(enemyData);
+            e.SetProperties(enemyData, uiTarget);
             e.Move(currentMap.path);
             e.OnKill += OnEnemyKill;
 

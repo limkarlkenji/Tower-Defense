@@ -16,7 +16,8 @@ public class LevelView : BaseView<LevelModel, LevelController>
             (source, gold, score) => {
                 player.AddCoins(gold);
                 player.AddScore(score);
-            }));
+            },
+            Camera.main.transform));
         nextWave += 1;
     }
 

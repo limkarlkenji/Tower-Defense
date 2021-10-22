@@ -2,10 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IDamageable
 {
     [SerializeField] private Animator _animator;
+    [SerializeField] private Image _Img_healthBar;
 
     [SerializeField] private string _enemyName;
     [SerializeField] private Sprite _portrait;
@@ -26,6 +28,9 @@ public class Enemy : MonoBehaviour, IDamageable
 
     public event Action<string, float, float> OnKill;
 
+    private float _initialHealth;
+    private Transform _uiTarget;
+
     public void TakeDamage(float damageReceived, float goldReward, float scoreReward, string source)
     {
         if(_health > 0)
@@ -38,10 +43,11 @@ public class Enemy : MonoBehaviour, IDamageable
                 _speed = 0;
                 StartCoroutine(cDestroy());
             }
+            UpdateHealthBar(damageReceived);
         }
     }
 
-    public void SetProperties(EnemyData d)
+    public void SetProperties(EnemyData d, Transform cam)
     {
         EnemyName = d.enemyName;
         Portrait = d.portrait;
@@ -50,6 +56,11 @@ public class Enemy : MonoBehaviour, IDamageable
         Damage = d.damage;
         GoldReward = d.goldReward;
         ScoreReward = d.scoreReward;
+
+        _uiTarget = cam;
+        _initialHealth = Health;
+
+
     }
 
     public void Move(List<Transform> path)
@@ -66,7 +77,9 @@ public class Enemy : MonoBehaviour, IDamageable
             {
                 transform.position = Vector3.MoveTowards(transform.position, path[i].position, _speed * Time.deltaTime);
                 transform.LookAt(path[i].position);
-               
+
+                _Img_healthBar.canvas.transform.LookAt(-_uiTarget.transform.forward * 1000);
+
                 yield return null;
             }
             i++;
@@ -79,5 +92,10 @@ public class Enemy : MonoBehaviour, IDamageable
         yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
         Destroy(gameObject);
 
+    }
+
+    private void UpdateHealthBar(float damage)
+    {
+        _Img_healthBar.fillAmount = (Health / _initialHealth);
     }
 }
